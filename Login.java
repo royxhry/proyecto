@@ -1,4 +1,4 @@
-// Importar la clase Scanner del paquete java.util, que permite leer la entrada del usuario desde la consola
+
 import java.util.Scanner;
 
 // Declaración de la clase Login
@@ -32,9 +32,6 @@ public class Login {
         // Creación de un objeto Scanner para leer la entrada del usuario desde la consola
         Scanner sc = new Scanner(System.in);
 
-        // Declaración de variables locales
-        int opc; // Variable para almacenar la opción del usuario
-
         // Bucle do-while para permitir múltiples intentos de inicio de sesión
         do {
             // Solicitar al usuario que ingrese su nombre de usuario
@@ -45,23 +42,23 @@ public class Login {
             System.out.println("Ingresa tu contraseña: ");
             String contraseña = sc.nextLine(); // Leer la entrada del usuario
 
-            // Crear un nuevo objeto Login con el usuario y la contraseña proporcionados por el usuario
-            Login login = new Login(usuario, contraseña);
-
             // Comprobar si el usuario y la contraseña ingresados coinciden con los valores predeterminados
-            if (usuario.equals(login.USER) && contraseña.equals(login.PASSWORD)) {
+            if (usuario.equals(USER) && contraseña.equals(PASSWORD)) {
                 System.out.println("Haz iniciado sesión"); 
+                return true; // Devuelve true si el inicio de sesión es exitoso
             } else {
                 System.out.println("Usuario o contraseña incorrectos."); 
             }
 
             // Solicitar al usuario si desea intentar iniciar sesión nuevamente
-            System.out.println("¿Deseas intentar iniciar sesión nuevamente? (1: Sí, 0: No)");
-            opc = sc.nextInt(); // Leer la opción del usuario
+            System.out.println("¿Deseas intentar iniciar sesión nuevamente? (1: Sí, cualquier tecla menos 1 mas enter para cerrar) ");
+            int opc = sc.nextInt(); // Leer la opción del usuario
             sc.nextLine(); // Limpiar el buffer de entrada
-        // Continuar el bucle mientras la opción del usuario sea 1 (Sí)
-        } while (opc == 1);
 
-        return false; // Devolver false si el usuario decide no iniciar sesión nuevamente
+            if (opc == 2) {
+                return false; // Devuelve false si el usuario decide no intentar iniciar sesión nuevamente
+            }
+        } while (true);
+        
     }
 }
