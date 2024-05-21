@@ -10,9 +10,29 @@ public class Empleado {
     
     public Empleado(String nombre, int edad, LocalDate fecha ,int id){
         this.nombre= nombre;
-        this.edad= edad;
+        
+        try {
+            this.edad= edad;
+        } catch (Exception e) {
+            System.out.println("el error es"+e);
+            // TODO: handle exception
+        }
         this.fecha= fecha;
-        this.id = id;
+        
+        try {
+            if (id<1){
+                System.out.println("El numero no puede ser menor a 1");
+            }else{
+                    this.id = id;
+                }
+            
+        } catch (Exception e) {
+            System.out.println("el error es"+e);
+        
+            
+        }
+        
+        
     
     }
     public String getNombre() {

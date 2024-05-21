@@ -16,6 +16,7 @@ public class Main {
             entrar = login.Accesar();
 
             if (entrar) {
+                clearConsole(); // Limpiar la consola antes de mostrar el menú
                 System.out.println("Acceso correcto");
                 List<Empleado> lista = new ArrayList<>();
                 lista.add(new Empleado("rodrigo", 20, LocalDate.of(2021, 1, 15), 1));
@@ -27,24 +28,31 @@ public class Main {
                 boolean salir = false;
 
                 do {
+                    
                     System.out.println("Menu de Gestion de Empleados");
                     System.out.println("1. Agregar empleado");
                     System.out.println("2. Consultar empleado");
                     System.out.println("3. Actualizar empleado");
                     System.out.println("4. Eliminar empleado");
-                    System.out.println("5. Salir");
+                    System.out.println("5. Mostrar lista de empleados");
+                    
+                    System.out.println("6. Salir");
+                    
                     System.out.print("Seleccione una opción: ");
 
                     int opcion = scanner.nextInt();
                     scanner.nextLine();
-
+                    try {
+                     
                     switch (opcion) {
                         case 1:
+                        clearConsole(); // Limpiar la consola antes de mostrar el menú
                             System.out.print("Ingresa el nombre del empleado: ");
                             String nombre = scanner.nextLine();
 
                             System.out.print("Ingresa la edad del empleado: ");
                             int edad = scanner.nextInt();
+                            
 
                             System.out.print("Ingresa el año de ingreso: ");
                             int anio = scanner.nextInt();
@@ -61,10 +69,13 @@ public class Main {
 
                             Empleado nuevoEmpleado = new Empleado(nombre, edad, LocalDate.of(anio, mes, dia), id);
                             lista.add(nuevoEmpleado);
-                            System.out.println("Empleado agregado exitosamente.");
+                            
+                            
+                            System.out.println("si agregaste los datos correctos el usuario se a creado si no ps no y intenta de nuevo con valores correctos");
                             break;
 
                         case 2:
+                        clearConsole(); // Limpiar la consola antes de mostrar el menú
                             System.out.print("Ingresa el ID del empleado a consultar: ");
                             int idConsulta = scanner.nextInt();
                             Empleado empleadoEncontrado = buscarEmpleadoPorId(lista, idConsulta);
@@ -76,6 +87,7 @@ public class Main {
                             break;
 
                         case 3:
+                        clearConsole(); // Limpiar la consola antes de mostrar el menú
                             System.out.print("Ingresa el ID del empleado a actualizar: ");
                             int idActualizar = scanner.nextInt();
                             scanner.nextLine();
@@ -103,6 +115,7 @@ public class Main {
                             break;
 
                         case 4:
+                        clearConsole(); // Limpiar la consola antes de mostrar el menú
                             System.out.print("Ingresa el ID del empleado a eliminar: ");
                             int idEliminar = scanner.nextInt();
                             Empleado empleadoEliminar = buscarEmpleadoPorId(lista, idEliminar);
@@ -114,7 +127,10 @@ public class Main {
                             }
                             break;
 
-                        case 5:
+                        
+    
+                        case 6:
+                        clearConsole(); // Limpiar la consola antes de mostrar el menú
                             salir = true;
                             break;
 
@@ -122,13 +138,32 @@ public class Main {
                             System.out.println("Opción no válida. Por favor, intente nuevamente.");
                             break;
                     }
+                } catch (Exception e) {
+                    System.out.println("el error"+e);   // TODO: handle exception
+                   }
                 } while (!salir);
             } else {
                 System.out.println("Acceso incorrecto. Intente nuevamente.");
             }
-        } while (!entrar);
-        scanner.close();
         
+        } while (!entrar);
+           
+    
+        scanner.close();
+    }
+
+    // Método para limpiar la consola
+    public static void clearConsole() {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+            }
+        } catch (Exception e) {
+            System.out.println("Error al intentar limpiar la consola.");
+        }
     }
 
     public static Empleado buscarEmpleadoPorId(List<Empleado> lista, int id) {
@@ -139,5 +174,4 @@ public class Main {
         }
         return null;
     }
-    
 }
