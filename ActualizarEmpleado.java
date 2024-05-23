@@ -10,7 +10,7 @@ public class ActualizarEmpleado {
             System.out.print("Ingresa el ID del empleado a actualizar: ");
             int idActualizar = scanner.nextInt();
             scanner.nextLine();
-            Empleado empleadoActualizar = Main.buscarEmpleadoPorId(lista, idActualizar);
+            Empleado empleadoActualizar = BuscarEmpleado.buscarEmpleadoPorId(lista, idActualizar);
             if (empleadoActualizar != null) {
                 System.out.print("Ingresa el nuevo nombre del empleado: ");
                 String nuevoNombre = scanner.nextLine();

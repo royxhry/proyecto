@@ -8,7 +8,7 @@ public class EliminarEmpleado {
         try {
             System.out.print("Ingresa el ID del empleado a eliminar: ");
             int idEliminar = scanner.nextInt();
-            Empleado empleadoEliminar = Main.buscarEmpleadoPorId(lista, idEliminar);
+            Empleado empleadoEliminar = BuscarEmpleado.buscarEmpleadoPorId(lista, idEliminar);
             if (empleadoEliminar != null) {
                 lista.remove(empleadoEliminar);
                 System.out.println("Empleado eliminado exitosamente.");

@@ -8,7 +8,7 @@ public class ConsultarEmpleado {
         try {
             System.out.print("Ingresa el ID del empleado a consultar: ");
             int idConsulta = scanner.nextInt();
-            Empleado empleadoEncontrado = Main.buscarEmpleadoPorId(lista, idConsulta);
+            Empleado empleadoEncontrado = BuscarEmpleado.buscarEmpleadoPorId(lista, idConsulta);
             if (empleadoEncontrado != null) {
                 System.out.println(empleadoEncontrado);
             } else {

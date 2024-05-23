@@ -27,11 +27,11 @@ public class Main {
 
                 do {
                     System.out.println("Menu de Gestion de Empleados");
-                    System.out.println("1. Agregar empleado");
-                    System.out.println("2. Consultar empleado");
-                    System.out.println("3. Actualizar empleado");
-                    System.out.println("4. Eliminar empleado");
-                    System.out.println("5. Mostrar lista de empleados");
+                    System.out.println("1. Mostrar lista de empleados");
+                    System.out.println("2. Agregar empleado");
+                    System.out.println("3. Consultar empleado");
+                    System.out.println("4. Actualizar empleado");
+                    System.out.println("5. Eliminar empleado");
                     System.out.println("6. Salir");
                     System.out.print("Seleccione una opción: ");
 
@@ -42,34 +42,48 @@ public class Main {
                         try {
                             switch (opcion) {
                                 case 1:
+                                try{ 
+                                    new Repositories().ejecutar(scanner, lista);
+                                    } catch (Exception e) {
+                                        System.out.println("Ocurrió un error:"+ e.getMessage());
+                                    }
+                                    break;
+                                case 2:
                                 try {
                                     new AgregarEmpleado().ejecutar(scanner, lista);
                                 } catch (Exception e) {
                                     System.out.println("Ocurrió un error: " + e.getMessage());
                             scanner.nextLine(); 
-                                }    
-                                
+                                }                     
                                     break;
-                                case 2:
+                                case 3:
                                 try {
                                     new ConsultarEmpleado().ejecutar(scanner, lista);
                                 } catch (Exception e) {
                                     System.out.println("Ocurrió un error: " + e.getMessage());
                                 }
-                                    
-                                    break;
-                                case 3:
-                                    new ActualizarEmpleado().ejecutar(scanner, lista);
                                     break;
                                 case 4:
-                                    new EliminarEmpleado().ejecutar(scanner, lista);
+                                try {
+                                    new ActualizarEmpleado().ejecutar(scanner, lista);
+                                } catch (Exception e) {
+                                    System.out.println("Ocurrió un error:"+ e.getMessage());
+                                }
                                     break;
                                 case 5:
-                                    new Repositories().ejecutar(scanner, lista);
+                                try {
+                                    new EliminarEmpleado().ejecutar(scanner, lista);
+                                } catch (Exception e) {
+                                    System.out.println("Ocurrió un error:"+ e.getMessage());
+                                }
                                     break;
                                 case 6:
-                                ClearConsole.clearConsole(); 
+                                try {
+                                    ClearConsole.clearConsole(); 
                                     salir = true;
+                                } catch (Exception e) {
+                                    System.out.println("Ocurrió un error:"+ e.getMessage());
+                                }
                                     break;
                                 default:
                                     System.out.println("Opción no válida. Por favor, intente nuevamente.");
@@ -92,15 +106,4 @@ public class Main {
 
         scanner.close();
     }
-
-    
-
-    public static Empleado buscarEmpleadoPorId(List<Empleado> lista, int id) {
-        for (Empleado empleado : lista) {
-            if (empleado.getId() == id) {
-                return empleado;
-            }
-        }
-        return null;
     }
-}
