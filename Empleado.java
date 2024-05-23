@@ -10,27 +10,13 @@ public class Empleado {
     
     public Empleado(String nombre, int edad, LocalDate fecha ,int id){
         this.nombre= nombre;
+
+        this.edad= edad;
         
-        try {
-            this.edad= edad;
-        } catch (Exception e) {
-            System.out.println("el error es"+e);
-            // TODO: handle exception
-        }
         this.fecha= fecha;
         
-        try {
-            if (id<1){
-                System.out.println("El numero no puede ser menor a 1");
-            }else{
-                    this.id = id;
-                }
-            
-        } catch (Exception e) {
-            System.out.println("el error es"+e);
-        
-            
-        }
+        this.id = id;
+                
         
         
     
@@ -60,9 +46,10 @@ public class Empleado {
         this.id = id;
     }
     
+    
     @Override
     public String toString() {
-        return "Empleado [nombre=" + nombre + ", edad=" + edad + ", id=" + id + ", fecha=" + fecha + "]";
+        return "Nombre del empleado= " + nombre + ", edad= " + edad + ", id= " + id + ", fecha de ingreso= " + fecha + "]";
     }
     
 }
