@@ -11,7 +11,7 @@ public class Main {
 
         do {
             Login login = new Login("admin", "123");
-            Login login = new Login("admin", "123");
+            
             entrar = login.Accesar();
 
             if (entrar) {
