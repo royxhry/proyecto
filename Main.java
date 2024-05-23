@@ -11,9 +11,11 @@ public class Main {
 
         do {
             Login login = new Login("admin", "123");
+            Login login = new Login("admin", "123");
             entrar = login.Accesar();
 
             if (entrar) {
+                ClearConsole.clearConsole(); 
                 ClearConsole.clearConsole(); 
                 System.out.println("Acceso correcto");
                 List<Empleado> lista = new ArrayList<>();
@@ -102,7 +104,9 @@ public class Main {
                 System.out.println("Acceso incorrecto. Intente nuevamente.");
             }
 
+
         } while (!entrar);
+
 
         scanner.close();
     }
